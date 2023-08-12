@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Review Carousel</title>
+    <title>Responsive Navigation</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Customer Reviews</h1>
-        <div class="carousel">
-            <div class="review">
-                <img class="avatar" src=""alt="User Avatar">
-                <p class="review-text" id="review-text">Click the button below for a random review!</p>
-            </div>
+    <nav class="navbar">
+        <div class="logo">Logo</div>
+        <div class="hamburger" id="hamburger">
+            <div class="bar" id="bar1"></div>
+            <div class="bar" id="bar2"></div>
+            <div class="bar" id="bar3"></div>
         </div>
-        
-        <button class="btn" id="btn">Show Random Review</button>
+        <ul class="menu" id="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="memo">
+        <h2>Write a Memo</h2>
+        <textarea id="memo"></textarea>
     </div>
     <script src="script.js"></script>
 </body>
