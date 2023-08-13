@@ -7,6 +7,10 @@ hamburger.addEventListener("click", () => {
     bars.forEach(bar => bar.classList.toggle("change"));
 });
 
+// 초기에 메뉴를 열기
+menu.classList.add("show");
+bars.forEach(bar => bar.classList.add("change"));
+
 const memoTextarea = document.getElementById("memo");
 
 memoTextarea.addEventListener("input", (event) => {
