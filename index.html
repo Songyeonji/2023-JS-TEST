@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Responsive Navigation</title>
+    <title>Modal Example</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Logo</div>
-        <div class="hamburger" id="hamburger">
-            <div class="bar" id="bar1"></div>
-            <div class="bar" id="bar2"></div>
-            <div class="bar" id="bar3"></div>
+    <button class="open-modal-btn" id="openModalBtn">Open Modal</button>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Warning</h2>
+            <p>You have unsaved changes. Do you want to leave without saving?</p>
+            <button class="save-btn" id="saveBtn">Save Changes</button>
+            <button class="close-modal-btn" id="closeModalBtn">Close</button>
         </div>
-        <ul class="menu" id="menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="memo">
-        <h2>Write a Memo</h2>
-        <textarea id="memo"></textarea>
     </div>
     <script src="script.js"></script>
 </body>
