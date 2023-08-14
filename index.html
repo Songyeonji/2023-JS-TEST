@@ -7,15 +7,23 @@
     <title>Modal Example</title>
 </head>
 <body>
-    <button class="open-modal-btn" id="openModalBtn">Open Modal</button>
+    <button class="open-modal-btn" id="openModalBtn">Open Memo Modal</button>
     <div class="modal" id="modal">
         <div class="modal-content">
             <h2>Warning</h2>
-            <p>You have unsaved changes. Do you want to leave without saving?</p>
-            <button class="save-btn" id="saveBtn">Save Changes</button>
-            <button class="close-modal-btn" id="closeModalBtn">Close</button>
+            <p>이대로 나가시면 저장되지 않습니다. 나가시겠습니까?</p>
+            <button class="save-btn" id="saveBtn">저장하기</button>
+            <button class="close-modal-btn" id="closeModalBtn">나가기</button>
         </div>
     </div>
+
+    <div class="memo">
+        <h2>Write a Memo</h2>
+        <textarea class="memo-input" id="memoInput"></textarea>
+        <button class="save-btn" id="saveMemoBtn">Save Memo</button>
+    </div>
+    
+    
     <script src="script.js"></script>
 </body>
 </html>
