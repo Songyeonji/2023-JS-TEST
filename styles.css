@@ -64,6 +64,24 @@ body {
     animation: fadeIn 0.3s ease-in-out;
 }
 
+
+.save-btn, .close-modal-btn {
+    /* ... (이전 스타일) ... */
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.save-btn {
+    background-color: #007bff;
+}
+
+.close-modal-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+
 .modal-content {
     background-color: #f9f9f9;
     padding: 20px;
