@@ -4,26 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Modal Example</title>
+    <title>FAQ Page</title>
 </head>
 <body>
-    <button class="open-modal-btn" id="openModalBtn">Open Memo Modal</button>
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <h2>Warning</h2>
-            <p>이대로 나가시면 저장되지 않습니다. 나가시겠습니까?</p>
-            <button class="save-btn" id="saveBtn">저장하기</button>
-            <button class="close-modal-btn" id="closeModalBtn">나가기</button>
+    <div class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-item">
+            <h3 class="question">What is Lorem Ipsum?</h3>
+            <p class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
+        <div class="faq-item">
+            <h3 class="question">How can I contact customer support?</h3>
+            <p class="answer">You can reach our customer support team at support@example.com.</p>
+        </div>
+        <!-- Add more FAQ items as needed -->
     </div>
-
-    <div class="memo">
-        <h2>Write a Memo</h2>
-        <textarea class="memo-input" id="memoInput"></textarea>
-        <button class="save-btn" id="saveMemoBtn">Save Memo</button>
-    </div>
-    
-    
     <script src="script.js"></script>
 </body>
 </html>
