@@ -28,6 +28,16 @@ body {
 
 .answer {
     display: none;
-    margin-top: 10px;
-    font-size: 14px;
+}
+
+.active .answer {
+    display: block;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
 }
