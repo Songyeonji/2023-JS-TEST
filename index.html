@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>FAQ Page</title>
-  </head>
-  <body>
-    <div class="faq-container">
-      <h1>Frequently Asked Questions</h1>
-      <div class="faq-item">
-        <h3 class="question">What is Lorem Ipsum?</h3>
-        <button class="toggle-btn">+</button>
-        <p class="answer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-      </div>
-      <div class="faq-item">
-        <h3 class="question">How can I contact customer support?</h3>
-        <button class="toggle-btn">+</button>
-        <p class="answer">
-          You can reach our customer support team at support@example.com.
-        </p>
-      </div>
-      <div class="faq-item">
-        <h3 class="question">Is this service free?</h3>
-        <button class="toggle-btn">+</button>
-        <p class="answer">Yes, our basic service is free to use.</p>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Restaurant Menu Filter</title>
+</head>
+<body>
+    <h1>Restaurant Menu</h1>
+    <div class="filters">
+        <button class="filter-btn" data-category="all">All</button>
+        <button class="filter-btn" data-category="breakfast">Breakfast</button>
+        <button class="filter-btn" data-category="lunch">Lunch</button>
+        <button class="filter-btn" data-category="dinner">Dinner</button>
+    </div>
+    <div class="menu-list">
+        <!-- Menu items will be dynamically added here -->
     </div>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
+

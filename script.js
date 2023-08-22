@@ -1,25 +1,39 @@
-const questions = document.querySelectorAll('.question');
+document.addEventListener("DOMContentLoaded", () => {
+    const menuItems = [
+        { name: "Pancakes", category: "breakfast" },
+        { name: "Burger", category: "lunch" },
+        { name: "Pizza", category: "dinner" },
+        // Add more menu items
+    ];
 
-questions.forEach(question => {
-    question.addEventListener('click', () => {
-        const answer = question.nextElementSibling;
-        answer.classList.toggle('active');
-    });
-});
+    const menuList = document.querySelector(".menu-list");
+    const filterButtons = document.querySelectorAll(".filter-btn");
 
-const toggleButtons = document.querySelectorAll('.toggle-btn');
+    function displayMenuItems(menu) {
+        menuList.innerHTML = "";
+        menu.forEach(item => {
+            const menuItem = document.createElement("div");
+            menuItem.classList.add("menu-item");
+            menuItem.textContent = item.name;
+            menuList.appendChild(menuItem);
+        });
+    }
 
-toggleButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement;
-        const answer = faqItem.querySelector('.answer');
-
-        answer.classList.toggle('active');
-        
-        if (answer.classList.contains('active')) {
-            button.textContent = '-';
+    function filterMenuItems(category) {
+        if (category === "all") {
+            displayMenuItems(menuItems);
         } else {
-            button.textContent = '+';
+            const filteredItems = menuItems.filter(item => item.category === category);
+            displayMenuItems(filteredItems);
         }
+    }
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const category = button.dataset.category;
+            filterMenuItems(category);
+        });
     });
+
+    displayMenuItems(menuItems);
 });
