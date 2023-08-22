@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const menuItems = [
-        { name: "Pancakes", category: "breakfast" },
-        { name: "Burger", category: "lunch" },
-        { name: "Pizza", category: "dinner" },
+        { name: "Pancakes", category: "breakfast", icon: "fas fa-coffee" },
+        { name: "Burger", category: "lunch", icon: "fas fa-hamburger" },
+        { name: "Pizza", category: "dinner", icon: "fas fa-pizza-slice" },
         // Add more menu items
     ];
 
