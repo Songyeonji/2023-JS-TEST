@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <title>Restaurant Menu Filter</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Video Background</title>
 </head>
 <body>
-    <h1>Restaurant Menu</h1>
-    <div class="filters">
-        <button class="filter-btn" data-category="all">All</button>
-        <button class="filter-btn" data-category="breakfast">Breakfast</button>
-        <button class="filter-btn" data-category="lunch">Lunch</button>
-        <button class="filter-btn" data-category="dinner">Dinner</button>
-    </div>
-    <div class="menu-list">
-        <!-- Menu items will be dynamically added here -->
+    <div class="video-container">
+        <video id="video" autoplay loop muted>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="controls">
+            <button id="playPauseBtn" class="play-btn"><i class="fas fa-play"></i></button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-
