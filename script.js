@@ -1,12 +1,25 @@
-const video = document.getElementById("video");
-const playPauseBtn = document.getElementById("playPauseBtn");
+const navbar = document.getElementById("navbar");
+const sections = document.querySelectorAll(".section");
 
-playPauseBtn.addEventListener("click", () => {
-    if (video.paused) {
-        video.play();
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+window.addEventListener("scroll", () => {
+    const scrollHeight = window.pageYOffset;
+    
+    if (scrollHeight > 100) {
+        navbar.style.top = "0";
     } else {
-        video.pause();
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        navbar.style.top = "-100px";
     }
+
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const navLinks = navbar.querySelectorAll("ul li a");
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").slice(1) === section.id) {
+                    link.classList.add("active");
+                }
+            });
+        }
+    });
 });
