@@ -1,25 +1,21 @@
-const navbar = document.getElementById("navbar");
-const sections = document.querySelectorAll(".section");
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
 
-window.addEventListener("scroll", () => {
-    const scrollHeight = window.pageYOffset;
-    
-    if (scrollHeight > 100) {
-        navbar.style.top = "0";
-    } else {
-        navbar.style.top = "-100px";
-    }
+tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const targetTab = button.getAttribute("data-tab");
 
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            const navLinks = navbar.querySelectorAll("ul li a");
-            navLinks.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").slice(1) === section.id) {
-                    link.classList.add("active");
-                }
-            });
-        }
+        tabButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+        button.classList.add("active");
+
+        tabContents.forEach(content => {
+            content.style.display = "none";
+        });
+        document.getElementById(targetTab).style.display = "block";
     });
 });
+
+// 초기 탭 설정
+tabButtons[0].click();
