@@ -1,21 +1,35 @@
-const tabButtons = document.querySelectorAll(".tab-btn");
-const tabContents = document.querySelectorAll(".tab-content");
+const generateBtn = document.getElementById("generateBtn");
+const resultDiv = document.getElementById("result");
 
-tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const targetTab = button.getAttribute("data-tab");
+generateBtn.addEventListener("click", event => {
+    event.preventDefault();
 
-        tabButtons.forEach(btn => {
-            btn.classList.remove("active");
-        });
-        button.classList.add("active");
+    const linesInput = document.getElementById("lines");
+    const lines = parseInt(linesInput.value);
 
-        tabContents.forEach(content => {
-            content.style.display = "none";
-        });
-        document.getElementById(targetTab).style.display = "block";
-    });
+    if (!isNaN(lines) && lines > 0) {
+        const generatedText = generateLoremIpsum(lines);
+        resultDiv.textContent = generatedText;
+    } else {
+        resultDiv.textContent = "Please enter a valid number of lines.";
+    }
 });
 
-// 초기 탭 설정
-tabButtons[0].click();
+function generateLoremIpsum(lines) {
+    const loremIpsum = [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Praesent volutpat elit nec libero fringilla, at feugiat ligula dictum.",
+        "Quisque ac libero ac diam consectetur venenatis.",
+        "Integer at urna convallis, consequat sapien ut, ultrices tellus.",
+        "Proin cursus felis ut feugiat fringilla.",
+        
+    ];
+
+    let generatedText = "";
+    for (let i = 0; i < lines; i++) {
+        const randomIndex = Math.floor(Math.random() * loremIpsum.length);
+        generatedText += loremIpsum[randomIndex] + "\n";
+    }
+
+    return generatedText;
+}

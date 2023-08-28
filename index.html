@@ -4,28 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Tabbed Content</title>
+    <title>Custom Lorem Ipsum Generator</title>
 </head>
 <body>
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="tab1">Tab 1</button>
-        <button class="tab-btn" data-tab="tab2">Tab 2</button>
-        <button class="tab-btn" data-tab="tab3">Tab 3</button>
+    <div class="container">
+        <h2>Custom Lorem Ipsum Generator</h2>
+        <label for="lines">Enter the number of lines:</label>
+        <input type="number" id="lines" min="1" step="1">
+        <button id="generateBtn">Generate</button>
+        <div id="result"></div>
     </div>
-    
-    <div class="tab-content" id="tab1">
-        <h2>Tab 1 Content</h2>
-        <p>This is the content for Tab 1.</p>
-    </div>
-    <div class="tab-content" id="tab2">
-        <h2>Tab 2 Content</h2>
-        <p>This is the content for Tab 2.</p>
-    </div>
-    <div class="tab-content" id="tab3">
-        <h2>Tab 3 Content</h2>
-        <p>This is the content for Tab 3.</p>
-    </div>
-    
     <script src="script.js"></script>
 </body>
 </html>
