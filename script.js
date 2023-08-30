@@ -1,35 +1,27 @@
-const generateBtn = document.getElementById("generateBtn");
-const resultDiv = document.getElementById("result");
+document.addEventListener("DOMContentLoaded", () => {
+    const itemInput = document.getElementById("itemInput");
+    const addBtn = document.getElementById("addBtn");
+    const itemList = document.getElementById("itemList");
 
-generateBtn.addEventListener("click", event => {
-    event.preventDefault();
+    addBtn.addEventListener("click", addItem);
 
-    const linesInput = document.getElementById("lines");
-    const lines = parseInt(linesInput.value);
+    function addItem() {
+        const itemName = itemInput.value.trim();
+        if (itemName === "") return;
 
-    if (!isNaN(lines) && lines > 0) {
-        const generatedText = generateLoremIpsum(lines);
-        resultDiv.textContent = generatedText;
-    } else {
-        resultDiv.textContent = "Please enter a valid number of lines.";
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+            <span>${itemName}</span>
+            <button class="delete-btn">Delete</button>
+        `;
+
+        itemList.appendChild(listItem);
+        itemInput.value = "";
+
+        const deleteBtn = listItem.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", () => {
+            itemList.removeChild(listItem);
+        });
     }
 });
 
-function generateLoremIpsum(lines) {
-    const loremIpsum = [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "Praesent volutpat elit nec libero fringilla, at feugiat ligula dictum.",
-        "Quisque ac libero ac diam consectetur venenatis.",
-        "Integer at urna convallis, consequat sapien ut, ultrices tellus.",
-        "Proin cursus felis ut feugiat fringilla.",
-        
-    ];
-
-    let generatedText = "";
-    for (let i = 0; i < lines; i++) {
-        const randomIndex = Math.floor(Math.random() * loremIpsum.length);
-        generatedText += loremIpsum[randomIndex] + "\n";
-    }
-
-    return generatedText;
-}
