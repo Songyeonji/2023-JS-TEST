@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Rock Paper Scissors Game</title>
+    <title>Simon Game</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Rock Paper Scissors Game</h2>
-        <div class="choices">
-            <button class="choice" data-choice="rock">Rock</button>
-            <button class="choice" data-choice="paper">Paper</button>
-            <button class="choice" data-choice="scissors">Scissors</button>
+    <div class="simon-game">
+        <h2>Simon Game</h2>
+        <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="resetBtn">Reset</button>
         </div>
-        <div class="result">
-            <p>Make your choice!</p>
-        </div>
+        <div class="sequence" id="sequence"></div>
     </div>
     <script src="script.js"></script>
 </body>
