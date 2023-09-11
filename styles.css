@@ -1,17 +1,17 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
 }
 
 .simon-game {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: white;
+    background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
@@ -21,12 +21,17 @@ body {
 
 button {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 3px;
     cursor: pointer;
     margin: 0 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 .sequence {
@@ -34,27 +39,32 @@ button {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .sequence div {
-    /* ... */
-    transition: background-color 0.3s ease-in-out;
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
 
 .sequence div:hover {
-    /* ... */
+    transform: scale(1.05);
 }
 
-.highlighted {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    animation: highlight 0.5s;
+/* 새로운 스타일 추가 */
+.sequence div:nth-child(1) {
+    background-color: #FF5733;
 }
 
-@keyframes highlight {
-    0% {
-        background-color: transparent;
-    }
-    100% {
-        background-color: inherit;
-    }
+.sequence div:nth-child(2) {
+    background-color: #33FF57;
+}
+
+.sequence div:nth-child(3) {
+    background-color: #5733FF;
+}
+
+.sequence div:nth-child(4) {
+    background-color: #F1C40F;
 }
