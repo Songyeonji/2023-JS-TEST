@@ -1,70 +1,13 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-}
-
-.simon-game {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-.controls {
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
-    cursor: pointer;
-    margin: 0 10px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.sequence {
+    background-color: #f0f0f0;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.sequence div {
-    width: 70px;
-    height: 70px;
-    margin: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.sequence div:hover {
-    transform: scale(1.05);
-}
-
-/* 새로운 스타일 추가 */
-.sequence div:nth-child(1) {
-    background-color: #FF5733;
-}
-
-.sequence div:nth-child(2) {
-    background-color: #33FF57;
-}
-
-.sequence div:nth-child(3) {
-    background-color: #5733FF;
-}
-
-.sequence div:nth-child(4) {
-    background-color: #F1C40F;
+canvas {
+    border: 1px solid #000;
 }

@@ -1,76 +1,35 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const sequenceDisplay = document.getElementById("sequence");
-    const startBtn = document.getElementById("startBtn");
-    const resetBtn = document.getElementById("resetBtn");
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
-    const colors = ["red", "green", "blue", "yellow"];
-    const sequence = [];
-    let playerTurn = false;
-    let currentIndex = 0;
+// 플레이어 객체
+const player = {
+    x: 50,
+    y: 50,
+    width: 32,
+    height: 32,
+    speed: 5,
+};
 
-    startBtn.addEventListener("click", startGame);
-    resetBtn.addEventListener("click", resetGame);
+// 게임 루프
+function gameLoop() {
+    requestAnimationFrame(gameLoop);
 
-    function startGame() {
-        startBtn.setAttribute("disabled", "true");
-        resetBtn.removeAttribute("disabled");
-        generateNextMove();
+    // 게임 로직 업데이트
+
+    // 그리기
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+// 키보드 이벤트 처리
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+        player.x += player.speed;
+    } else if (event.key === "ArrowLeft") {
+        player.x -= player.speed;
     }
-
-    function resetGame() {
-        sequence.length = 0;
-        playerTurn = false;
-        currentIndex = 0;
-        sequenceDisplay.textContent = "";
-        startBtn.removeAttribute("disabled");
-        resetBtn.setAttribute("disabled", "true");
-    }
-
-    function generateNextMove() {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        sequence.push(randomColor);
-        playSequence();
-    }
-
-    function playSequence() {
-        let i = 0;
-        const interval = setInterval(() => {
-            highlightColor(sequence[i]);
-            i++;
-            if (i >= sequence.length) {
-                clearInterval(interval);
-                playerTurn = true;
-                currentIndex = 0;
-            }
-        }, 1000);
-    }
-    function highlightColor(color) {
-        const coloredDiv = document.createElement("div");
-        coloredDiv.style.backgroundColor = color;
-        coloredDiv.className = "highlighted"; // 수정: 클래스 이름을 "highlighted"로 변경
-        sequenceDisplay.appendChild(coloredDiv);
-        setTimeout(() => {
-            coloredDiv.style.backgroundColor = "transparent";
-        }, 500);
-    }
-    
-
-    sequenceDisplay.addEventListener("click", (event) => {
-        if (playerTurn) {
-            const clickedColor = event.target.style.backgroundColor;
-            const expectedColor = sequence[currentIndex];
-            if (clickedColor === expectedColor) {
-                currentIndex++;
-                if (currentIndex >= sequence.length) {
-                    playerTurn = false;
-                    setTimeout(() => {
-                        generateNextMove();
-                    }, 1000);
-                }
-            } else {
-                alert("Wrong sequence! Game over.");
-                resetGame();
-            }
-        }
-    });
 });
+
+// 게임 루프 시작
+gameLoop();
