@@ -1,7 +1,6 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// 플레이어 객체
 const player = {
     x: 50,
     y: 50,
@@ -10,11 +9,22 @@ const player = {
     speed: 5,
 };
 
-// 게임 루프
 function gameLoop() {
     requestAnimationFrame(gameLoop);
 
     // 게임 로직 업데이트
+    if (keys["ArrowRight"]) {
+        player.x += player.speed;
+    }
+    if (keys["ArrowLeft"]) {
+        player.x -= player.speed;
+    }
+    if (keys["ArrowUp"]) {
+        player.y -= player.speed;
+    }
+    if (keys["ArrowDown"]) {
+        player.y += player.speed;
+    }
 
     // 그리기
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -22,14 +32,14 @@ function gameLoop() {
     ctx.fillRect(player.x, player.y, player.width, player.height);
 }
 
-// 키보드 이벤트 처리
+const keys = {};
+
 document.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight") {
-        player.x += player.speed;
-    } else if (event.key === "ArrowLeft") {
-        player.x -= player.speed;
-    }
+    keys[event.key] = true;
 });
 
-// 게임 루프 시작
+document.addEventListener("keyup", (event) => {
+    keys[event.key] = false;
+});
+
 gameLoop();
