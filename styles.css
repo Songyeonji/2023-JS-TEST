@@ -11,3 +11,23 @@ body {
 canvas {
     border: 1px solid #000;
 }
+
+/* 플레이어 스타일 */
+#gameCanvas {
+    background-color: #fff; /* 캔버스 배경색 지정 */
+}
+
+/* 장애물 스타일 */
+.obstacle {
+    background-color: gray;
+}
+
+/* 시작 지점 스타일 */
+.start-point {
+    background-color: green;
+}
+
+/* 완료 지점 스타일 */
+.end-point {
+    background-color: red;
+}
