@@ -20,6 +20,13 @@ const endPoint = { x: 700, y: 350 };
 let gameWon = false;
 
 const keys = {}; // Declare keys here
+function resetGame() {
+    player.x = startPoint.x;
+    player.y = startPoint.y;
+    player.speed = 5; // 플레이어 속도 초기화
+    keys = {}; // 이전 움직임 초기화
+    gameWon = false;
+}
 
 function gameLoop() {
     requestAnimationFrame(gameLoop);
