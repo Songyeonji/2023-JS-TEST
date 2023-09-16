@@ -1,33 +1,18 @@
 body {
     margin: 0;
-    padding: 0;
+    overflow: hidden;
+}
+#gameContainer {
+    position: relative;
+    width: 300px;
+    height: 500px;
     background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 0 auto;
 }
-
-canvas {
-    border: 1px solid #000;
-}
-
-/* 플레이어 스타일 */
-#gameCanvas {
-    background-color: #fff; /* 캔버스 배경색 지정 */
-}
-
-/* 장애물 스타일 */
-.obstacle {
-    background-color: gray;
-}
-
-/* 시작 지점 스타일 */
-.start-point {
-    background-color: green;
-}
-
-/* 완료 지점 스타일 */
-.end-point {
-    background-color: red;
+#player {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    bottom: 0;
 }
