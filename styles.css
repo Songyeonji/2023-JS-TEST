@@ -27,5 +27,6 @@ body {
     height: 10px;
     background-color: #000;
     left: 50%; /* 가운데 정렬 */
+    display: block; /* 발판이 화면에 표시되도록 수정 */
     transform: translateX(-50%);
 }

@@ -6,8 +6,9 @@ let jumpHeight = 0;
 let jumpDirection = 1;
 let isFalling = false;
 
-player.addEventListener("click", () => {
-    if (!isJumping && !isFalling) {
+// Enter 키로 점프 활성화
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !isJumping && !isFalling) {
         jump();
     }
 });
