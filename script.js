@@ -5,6 +5,7 @@ let isJumping = false;
 let jumpHeight = 0;
 let jumpDirection = 1;
 let isFalling = false;
+let platformBottom = 100; // 초기 플랫폼의 아래 위치
 
 // Enter 키로 점프 활성화
 document.addEventListener("keydown", (event) => {
@@ -69,6 +70,18 @@ function moveRight() {
     player.style.left = newLeft + "px";
 }
 
+
+// 플랫폼을 생성하는 함수
+function createPlatform() {
+    const platform = document.createElement("div");
+    platform.classList.add("platform");
+    platform.style.bottom = platformBottom + "px";
+    platform.style.left = Math.random() * (gameContainer.offsetWidth - 50) + "px"; // 랜덤한 가로 위치
+    gameContainer.appendChild(platform);
+    platformBottom += 100; // 다음 플랫폼의 아래 위치
+}
+
+
 // 발판 충돌 감지 및 떨어지기 처리
 function checkPlatformCollision() {
     platforms.forEach((platform) => {
@@ -95,5 +108,14 @@ function checkPlatformCollision() {
     });
 }
 
-// 주기적으로 충돌 감지
-setInterval(checkPlatformCollision, 20);
+    // 플랫폼이 화면 위로 사라지면 새로운 플랫폼 생성
+    const topPlatform = document.querySelector(".platform");
+    if (topPlatform && topPlatform.getBoundingClientRect().bottom <= 0) {
+        gameContainer.removeChild(topPlatform);
+        createPlatform();
+    }
+
+// 주기적으로 충돌 감지 및 플랫폼 관리
+setInterval(() => {
+    checkPlatformCollision();
+}, 20);
