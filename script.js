@@ -35,21 +35,38 @@ function endGame() {
 
 function moleUp() {
     const randomTime = Math.random() * 2000 + 500; // 0.5초 ~ 2.5초
-    const randomHole = holes[Math.floor(Math.random() * holes.length)];
-    randomHole.classList.add('up');
+    const randomHoles = randomHoleIndexes();
+    randomHoles.forEach(index => {
+        holes[index].classList.add('up');
+    });
     setTimeout(() => {
-        randomHole.classList.remove('up');
+        randomHoles.forEach(index => {
+            holes[index].classList.remove('up');
+        });
         if (isGameRunning) {
             moleUp();
         }
     }, randomTime);
 }
 
+function randomHoleIndexes() {
+    const indexes = [];
+    while (indexes.length < 2) {
+        const randomIndex = Math.floor(Math.random() * holes.length);
+        if (!indexes.includes(randomIndex)) {
+            indexes.push(randomIndex);
+        }
+    }
+    return indexes;
+}
+
 function bonk(e) {
     if (!e.isTrusted) return; // 가짜 클릭을 방지
-    score++;
-    this.classList.remove('up');
-    scoreDisplay.textContent = `Score: ${score}`;
+    if (this.classList.contains('up')) {
+        score++;
+        this.classList.remove('up');
+        scoreDisplay.textContent = `Score: ${score}`;
+    }
 }
 
 holes.forEach(hole => hole.addEventListener('click', bonk));
