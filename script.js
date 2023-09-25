@@ -31,18 +31,31 @@ function endGame() {
     isGameRunning = false;
     startButton.disabled = false;
     alert(`Game Over! Your score is ${score}`);
-}
-
-function moleUp() {
-    const randomTime = Math.random() * 2000 + 500; // 0.5초 ~ 2.5초
-    const randomHoles = randomHoleIndexes();
-    randomHoles.forEach(index => {
-        holes[index].classList.add('up');
+    moles.forEach(mole => {
+        mole.classList.remove('up');
     });
+    moles = [];
+}
+function moleUp() {
+    if (!isGameRunning) return;
+
+    const randomTime = Math.random() * 2000 + 500; // 0.5초 ~ 2.5초
+    const randomHoleCount = Math.floor(Math.random() * 3) + 1; // 1~3개의 두더지
+
+    for (let i = 0; i < randomHoleCount; i++) {
+        const randomIndex = Math.floor(Math.random() * holes.length);
+        const randomHole = holes[randomIndex];
+        if (!moles.includes(randomHole)) {
+            randomHole.classList.add('up');
+            moles.push(randomHole);
+        }
+    }
+
     setTimeout(() => {
-        randomHoles.forEach(index => {
-            holes[index].classList.remove('up');
+        moles.forEach(mole => {
+            mole.classList.remove('up');
         });
+        moles = moles.filter(mole => mole.parentElement); // 이미 제거된 두더지 제거
         if (isGameRunning) {
             moleUp();
         }
