@@ -6,6 +6,7 @@ const startButton = document.querySelector('.start-button');
 let score = 0;
 let timeLeft = 60;
 let isGameRunning = false;
+let moles = []; // 두더지 요소를 저장할 배열
 
 function startGame() {
     if (!isGameRunning) {
