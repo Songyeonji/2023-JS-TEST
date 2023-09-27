@@ -1,3 +1,4 @@
+// script.js
 const holes = document.querySelectorAll('.hole');
 const scoreDisplay = document.querySelector('.score');
 const timeDisplay = document.querySelector('.time');
@@ -34,9 +35,11 @@ function endGame() {
     alert(`Game Over! Your score is ${score}`);
     moles.forEach(mole => {
         mole.classList.remove('up');
+        mole.remove(); // 이미지를 제거합니다.
     });
     moles = [];
 }
+
 function moleUp() {
     if (!isGameRunning) return;
 
@@ -47,14 +50,19 @@ function moleUp() {
         const randomIndex = Math.floor(Math.random() * holes.length);
         const randomHole = holes[randomIndex];
         if (!moles.includes(randomHole)) {
-            randomHole.classList.add('up');
-            moles.push(randomHole);
+            const mole = document.createElement('img');
+            mole.src = 'https://cdn-icons-png.flaticon.com/128/5050/5050857.png';
+            mole.alt = 'Mole';
+            mole.classList.add('mole');
+            randomHole.appendChild(mole);
+            moles.push(mole);
         }
     }
 
     setTimeout(() => {
         moles.forEach(mole => {
             mole.classList.remove('up');
+            mole.remove(); // 이미지를 제거합니다.
         });
         moles = moles.filter(mole => mole.parentElement); // 이미 제거된 두더지 제거
         if (isGameRunning) {
@@ -63,23 +71,16 @@ function moleUp() {
     }, randomTime);
 }
 
-function randomHoleIndexes() {
-    const indexes = [];
-    while (indexes.length < 2) {
-        const randomIndex = Math.floor(Math.random() * holes.length);
-        if (!indexes.includes(randomIndex)) {
-            indexes.push(randomIndex);
-        }
-    }
-    return indexes;
-}
-
 function bonk(e) {
     if (!e.isTrusted) return; // 가짜 클릭을 방지
     if (this.classList.contains('up')) {
         score++;
         this.classList.remove('up');
+        this.src = 'https://cdn-icons-png.flaticon.com/128/1695/1695590.png';
         scoreDisplay.textContent = `Score: ${score}`;
+        setTimeout(() => {
+            this.src = 'https://cdn-icons-png.flaticon.com/128/5050/5050857.png'; // 클릭 후 이미지 변경
+        }, 300);
     }
 }
 
