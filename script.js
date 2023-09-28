@@ -8,6 +8,7 @@ let score = 0;
 let timeLeft = 60;
 let isGameRunning = false;
 let moles = []; // 두더지 요소를 저장할 배열
+let lastHole;
 
 function startGame() {
     if (!isGameRunning) {
@@ -40,6 +41,18 @@ function endGame() {
     moles = [];
 }
 
+function randomHole(holes) {
+    const idx = Math.floor(Math.random() * holes.length);
+    const hole = holes[idx];
+
+    if (hole === lastHole) {
+        return randomHole(holes);
+    }
+
+    lastHole = hole;
+    return hole;
+}
+
 function moleUp() {
     if (!isGameRunning) return;
 
@@ -47,24 +60,31 @@ function moleUp() {
     const randomHoleCount = Math.floor(Math.random() * 3) + 1; // 1~3개의 두더지
 
     for (let i = 0; i < randomHoleCount; i++) {
-        const randomIndex = Math.floor(Math.random() * holes.length);
-        const randomHole = holes[randomIndex];
-        if (!moles.includes(randomHole)) {
-            const mole = document.createElement('img');
-            mole.src = 'https://cdn-icons-png.flaticon.com/128/5050/5050857.png';
-            mole.alt = 'Mole';
-            mole.classList.add('mole');
-            randomHole.appendChild(mole);
-            moles.push(mole);
-        }
+        const randomHoleElement = randomHole(holes);
+
+        const mole = document.createElement('img');
+        mole.src = 'https://cdn-icons-png.flaticon.com/128/5050/5050857.png';
+        mole.alt = 'Mole';
+        mole.classList.add('mole');
+        randomHoleElement.appendChild(mole);
+        moles.push(mole);
+
+        // 두더지 이미지에 클릭 이벤트 핸들러 등록
+        mole.addEventListener('click', bonk);
     }
 
     setTimeout(() => {
         moles.forEach(mole => {
             mole.classList.remove('up');
-            mole.remove(); // 이미지를 제거합니다.
+            mole.remove();
         });
-        moles = moles.filter(mole => mole.parentElement); // 이미 제거된 두더지 제거
+        moles = moles.filter(existingMole => !existingMole.parentElement);
+
+        // 클릭 이벤트 핸들러 제거
+        moles.forEach(mole => {
+            mole.removeEventListener('click', bonk);
+        });
+
         if (isGameRunning) {
             moleUp();
         }
