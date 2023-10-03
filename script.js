@@ -1,108 +1,46 @@
-// script.js
-const holes = document.querySelectorAll('.hole');
-const scoreDisplay = document.querySelector('.score');
-const timeDisplay = document.querySelector('.time');
-const startButton = document.querySelector('.start-button');
+document.addEventListener('DOMContentLoaded', function() {
+    const calculateButton = document.getElementById('calculateButton');
+    calculateButton.addEventListener('click', calculateChange);
+});
 
-let score = 0;
-let timeLeft = 60;
-let isGameRunning = false;
-let moles = []; // 두더지 요소를 저장할 배열
-let lastHole;
+function calculateChange() {
+    const itemPrice = parseFloat(document.getElementById('itemPrice').value);
+    const amountPaid = parseFloat(document.getElementById('amountPaid').value);
 
-function startGame() {
-    if (!isGameRunning) {
-        isGameRunning = true;
-        score = 0;
-        timeLeft = 60;
-        scoreDisplay.textContent = `Score: ${score}`;
-        timeDisplay.textContent = `Time: ${timeLeft}`;
-        startButton.disabled = true;
-        moleUp();
-        const countdown = setInterval(() => {
-            timeLeft--;
-            timeDisplay.textContent = `Time: ${timeLeft}`;
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                endGame();
-            }
-        }, 1000);
-    }
-}
-
-function endGame() {
-    isGameRunning = false;
-    startButton.disabled = false;
-    alert(`Game Over! Your score is ${score}`);
-    moles.forEach(mole => {
-        mole.classList.remove('up');
-        mole.remove(); // 이미지를 제거합니다.
-    });
-    moles = [];
-}
-
-function randomHole(holes) {
-    const idx = Math.floor(Math.random() * holes.length);
-    const hole = holes[idx];
-
-    if (hole === lastHole) {
-        return randomHole(holes);
+    if (isNaN(itemPrice) || isNaN(amountPaid)) {
+        alert("올바른 숫자를 입력하세요.");
+        return;
     }
 
-    lastHole = hole;
-    return hole;
-}
-
-function moleUp() {
-    if (!isGameRunning) return;
-
-    const randomTime = Math.random() * 2000 + 500; // 0.5초 ~ 2.5초
-    const randomHoleCount = Math.floor(Math.random() * 3) + 1; // 1~3개의 두더지
-
-    for (let i = 0; i < randomHoleCount; i++) {
-        const randomHoleElement = randomHole(holes);
-
-        const mole = document.createElement('img');
-        mole.src = 'https://cdn-icons-png.flaticon.com/128/5050/5050857.png';
-        mole.alt = 'Mole';
-        mole.classList.add('mole');
-        randomHoleElement.appendChild(mole);
-        moles.push(mole);
-
-        // 두더지 이미지에 클릭 이벤트 핸들러 등록
-        mole.addEventListener('click', bonk);
+    if (itemPrice > amountPaid) {
+        alert("지불한 금액이 부족합니다.");
+        return;
     }
 
-    setTimeout(() => {
-        moles.forEach(mole => {
-            mole.classList.remove('up');
-            mole.remove();
-        });
-        moles = moles.filter(existingMole => !existingMole.parentElement);
+    const change = amountPaid - itemPrice;
 
-        // 클릭 이벤트 핸들러 제거
-        moles.forEach(mole => {
-            mole.removeEventListener('click', bonk);
-        });
+    const denominations = [10000, 5000, 1000, 500, 100, 50, 10, 1];
+    const changeResult = {};
 
-        if (isGameRunning) {
-            moleUp();
+    denominations.forEach(denomination => {
+        const count = Math.floor(change / denomination);
+        if (count > 0) {
+            changeResult[denomination] = count;
+            change -= denomination * count;
         }
-    }, randomTime);
+    });
+
+    displayChangeResult(changeResult);
 }
 
-function bonk(e) {
-    if (!e.isTrusted) return; // 가짜 클릭을 방지
-    if (this.classList.contains('up')) {
-        score++;
-        this.classList.remove('up');
-        this.src = 'https://cdn-icons-png.flaticon.com/128/1695/1695590.png';
-        scoreDisplay.textContent = `Score: ${score}`;
-        setTimeout(() => {
-            this.src = 'https://cdn-icons-png.flaticon.com/128/5050/5050857.png'; // 클릭 후 이미지 변경
-        }, 300);
+function displayChangeResult(changeResult) {
+    const changeResultElement = document.getElementById('changeResult');
+    changeResultElement.innerHTML = "거스름돈:<br>";
+
+    for (const denomination in changeResult) {
+        const count = changeResult[denomination];
+        if (count > 0) {
+            changeResultElement.innerHTML += `${denomination}원: ${count}개<br>`;
+        }
     }
 }
-
-holes.forEach(hole => hole.addEventListener('click', bonk));
-startButton.addEventListener('click', startGame);

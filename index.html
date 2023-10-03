@@ -4,24 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Whack-a-Mole Game</title>
+    <title>잔돈 계산기</title>
 </head>
 <body>
-    <h1>Whack-a-Mole Game</h1>
-    <div class="game-container">
-        <div class="hole hole1"></div>
-        <div class="hole hole2"></div>
-        <div class="hole hole3"></div>
-        <div class="hole hole4"></div>
-        <div class="hole hole5"></div>
-        <div class="hole hole6"></div>
-        <div class="hole hole7"></div>
-        <div class="hole hole8"></div>
-        <div class="hole hole9"></div>
-    </div>
-    <p class="score">Score: 0</p>
-    <p class="time">Time: 60</p>
-    <button class="start-button">Start Game</button>
+    <h1>잔돈 계산기</h1>
+    <form id="changeCalculator">
+        <label for="itemPrice">물건 가격:</label>
+        <input type="number" id="itemPrice" step="0.01" required>
+        <br>
+        <label for="amountPaid">지불한 금액:</label>
+        <input type="number" id="amountPaid" step="0.01" required>
+        <br>
+        <button type="button" id="calculateButton">잔돈 계산</button>
+    </form>
+    <p id="changeResult"></p>
+
     <script src="script.js"></script>
 </body>
 </html>
