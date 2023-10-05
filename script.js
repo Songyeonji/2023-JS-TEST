@@ -19,7 +19,7 @@ function calculateChange() {
 
     const change = amountPaid - itemPrice;
 
-    const denominations = [10000, 5000, 1000, 500, 100, 50, 10, 1];
+    const denominations = [10000, 5000, 1000, 500, 100];
     const changeResult = {};
 
     denominations.forEach(denomination => {
@@ -27,6 +27,16 @@ function calculateChange() {
         if (count > 0) {
             changeResult[denomination] = count;
             change -= denomination * count;
+        }
+    });
+
+    // 동전 계산
+    const coins = [500, 100];
+    coins.forEach(coin => {
+        const count = Math.floor(change / coin);
+        if (count > 0) {
+            changeResult[coin] = count;
+            change -= coin * count;
         }
     });
 
