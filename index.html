@@ -4,21 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>잔돈 계산기</title>
+    <title>달력</title>
 </head>
 <body>
-    <h1>잔돈 계산기</h1>
-    <form id="changeCalculator">
-        <label for="itemPrice">물건 가격:</label>
-        <input type="number" id="itemPrice" step="0.01" required>
-        <br>
-        <label for="amountPaid">지불한 금액:</label>
-        <input type="number" id="amountPaid" step="0.01" required>
-        <br>
-        <button type="button" id="calculateButton">잔돈 계산</button>
-    </form>
-    <p id="changeResult"></p>
-
+    <h1>월별 달력</h1>
+    <div id="calendar"></div>
     <script src="script.js"></script>
 </body>
 </html>

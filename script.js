@@ -1,56 +1,55 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const calculateButton = document.getElementById('calculateButton');
-    calculateButton.addEventListener('click', calculateChange);
-});
+const calendar = document.getElementById('calendar');
 
-function calculateChange() {
-    const itemPrice = parseFloat(document.getElementById('itemPrice').value);
-    const amountPaid = parseFloat(document.getElementById('amountPaid').value);
+function createCalendar(year, month) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
 
-    if (isNaN(itemPrice) || isNaN(amountPaid)) {
-        alert("올바른 숫자를 입력하세요.");
-        return;
-    }
+    const monthNames = [
+        'January', 'February', 'March', 'April',
+        'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ];
 
-    if (itemPrice > amountPaid) {
-        alert("지불한 금액이 부족합니다.");
-        return;
-    }
+    const table = document.createElement('table');
+    const caption = document.createElement('caption');
+    caption.textContent = `${monthNames[month]} ${year}`;
+    table.appendChild(caption);
 
-    const change = amountPaid - itemPrice;
+    const thead = document.createElement('thead');
+    const tr = document.createElement('tr');
 
-    const denominations = [10000, 5000, 1000, 500, 100];
-    const changeResult = {};
-
-    denominations.forEach(denomination => {
-        const count = Math.floor(change / denomination);
-        if (count > 0) {
-            changeResult[denomination] = count;
-            change -= denomination * count;
-        }
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayNames.forEach(dayName => {
+        const th = document.createElement('th');
+        th.textContent = dayName;
+        tr.appendChild(th);
     });
 
-    // 동전 계산
-    const coins = [500, 100];
-    coins.forEach(coin => {
-        const count = Math.floor(change / coin);
-        if (count > 0) {
-            changeResult[coin] = count;
-            change -= coin * count;
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    let day = 1;
+    for (let i = 0; i < 6; i++) {
+        const tr = document.createElement('tr');
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDayOfMonth) {
+                const td = document.createElement('td');
+                tr.appendChild(td);
+            } else if (day <= daysInMonth) {
+                const td = document.createElement('td');
+                td.textContent = day;
+                tr.appendChild(td);
+                day++;
+            }
         }
-    });
-
-    displayChangeResult(changeResult);
-}
-
-function displayChangeResult(changeResult) {
-    const changeResultElement = document.getElementById('changeResult');
-    changeResultElement.innerHTML = "거스름돈:<br>";
-
-    for (const denomination in changeResult) {
-        const count = changeResult[denomination];
-        if (count > 0) {
-            changeResultElement.innerHTML += `${denomination}원: ${count}개<br>`;
-        }
+        tbody.appendChild(tr);
     }
+
+    table.appendChild(tbody);
+    calendar.innerHTML = '';
+    calendar.appendChild(table);
 }
+
+const today = new Date();
+createCalendar(today.getFullYear(), today.getMonth());

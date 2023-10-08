@@ -1,50 +1,37 @@
-/* 기본 스타일 */
 body {
-    background-color: #f0f0f0;
     font-family: Arial, sans-serif;
     text-align: center;
+    background-color: #f0f0f0;
 }
 
 h1 {
     color: #333;
-    margin: 20px 0;
 }
 
-#changeCalculator {
+#calendar {
+    max-width: 600px;
+    margin: 0 auto;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
+    padding: 20px;
 }
 
-label {
-    font-weight: bold;
+table {
+    width: 100%;
 }
 
-input[type="number"] {
-    padding: 5px;
-    width: 100px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 5px;
+table, th, td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
 }
 
-button {
-    background-color: #4CAF50;
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-#changeResult {
-    font-weight: bold;
-    margin-top: 20px;
 }
