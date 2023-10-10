@@ -1,4 +1,27 @@
 const calendar = document.getElementById('calendar');
+const prevMonthButton = document.getElementById('prevMonth');
+const nextMonthButton = document.getElementById('nextMonth');
+
+let currentYear, currentMonth;
+
+prevMonthButton.addEventListener('click', () => {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    createCalendar(currentYear, currentMonth);
+});
+
+nextMonthButton.addEventListener('click', () => {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    createCalendar(currentYear, currentMonth);
+});
+
 
 function createCalendar(year, month) {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -27,6 +50,8 @@ function createCalendar(year, month) {
 
     thead.appendChild(tr);
     table.appendChild(thead);
+    currentYear = year;
+    currentMonth = month;
 
     const tbody = document.createElement('tbody');
     let day = 1;
@@ -52,4 +77,7 @@ function createCalendar(year, month) {
 }
 
 const today = new Date();
-createCalendar(today.getFullYear(), today.getMonth());
+currentYear = today.getFullYear();
+currentMonth = today.getMonth();
+createCalendar(currentYear, currentMonth);
+
