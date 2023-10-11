@@ -1,8 +1,13 @@
 const calendar = document.getElementById('calendar');
 const prevMonthButton = document.getElementById('prevMonth');
 const nextMonthButton = document.getElementById('nextMonth');
+const memoSection = document.getElementById('memo');
+const memoText = document.getElementById('memoText');
+const saveMemoButton = document.getElementById('saveMemo');
+
 
 let currentYear, currentMonth;
+let memos = {}; // 날짜별 메모 저장
 
 prevMonthButton.addEventListener('click', () => {
     currentMonth--;
@@ -22,6 +27,13 @@ nextMonthButton.addEventListener('click', () => {
     createCalendar(currentYear, currentMonth);
 });
 
+saveMemoButton.addEventListener('click', () => {
+    const memo = memoText.value;
+    const date = new Date(currentYear, currentMonth, selectedDate);
+    memos[date.toDateString()] = memo;
+    memoSection.style.display = 'none';
+    createCalendar(currentYear, currentMonth);
+});
 
 function createCalendar(year, month) {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -52,6 +64,21 @@ function createCalendar(year, month) {
     table.appendChild(thead);
     currentYear = year;
     currentMonth = month;
+
+    let selectedDate;
+
+      // 날짜 클릭 이벤트 처리
+    const dateCells = Array.from(document.querySelectorAll('td'));
+    dateCells.forEach(cell => {
+        cell.addEventListener('click', () => {
+            const date = cell.textContent;
+            if (date) {
+                selectedDate = date;
+                memoText.value = memos[new Date(currentYear, currentMonth, date).toDateString()] || '';
+                memoSection.style.display = 'block';
+            }
+        });
+    });
 
     const tbody = document.createElement('tbody');
     let day = 1;
