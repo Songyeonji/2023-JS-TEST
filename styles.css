@@ -42,7 +42,7 @@ th {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: block;
+    display: none;
 }
 
 #memo h2 {
@@ -70,4 +70,31 @@ th {
 
 #memo button:hover {
     background-color: #45a049;
+}
+
+
+
+/* 선택된 버튼 스타일 */
+button.selected {
+    background-color: #ff6347;
+}
+
+.memo-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.memo-body {
+    padding: 10px;
+}
+
+.memo-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.memo-text {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 100px;
 }

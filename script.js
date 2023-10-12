@@ -1,13 +1,15 @@
 const calendar = document.getElementById('calendar');
+const calendarTitle = document.getElementById('calendarTitle');
 const prevMonthButton = document.getElementById('prevMonth');
 const nextMonthButton = document.getElementById('nextMonth');
-const memoSection = document.getElementById('memo');
+const memoContainer = document.querySelector('.memo-container');
+const selectedDateElement = document.getElementById('selectedDate');
 const memoText = document.getElementById('memoText');
 const saveMemoButton = document.getElementById('saveMemo');
 
-
 let currentYear, currentMonth;
-let memos = {}; // 날짜별 메모 저장
+let selectedDate;
+let memos = {};
 
 prevMonthButton.addEventListener('click', () => {
     currentMonth--;
@@ -31,7 +33,7 @@ saveMemoButton.addEventListener('click', () => {
     const memo = memoText.value;
     const date = new Date(currentYear, currentMonth, selectedDate);
     memos[date.toDateString()] = memo;
-    memoSection.style.display = 'none';
+    memoContainer.style.display = 'none';
     createCalendar(currentYear, currentMonth);
 });
 
@@ -65,21 +67,6 @@ function createCalendar(year, month) {
     currentYear = year;
     currentMonth = month;
 
-    let selectedDate;
-
-      // 날짜 클릭 이벤트 처리
-    const dateCells = Array.from(document.querySelectorAll('td'));
-    dateCells.forEach(cell => {
-        cell.addEventListener('click', () => {
-            const date = cell.textContent;
-            if (date) {
-                selectedDate = date;
-                memoText.value = memos[new Date(currentYear, currentMonth, date).toDateString()] || '';
-                memoSection.style.display = 'block';
-            }
-        });
-    });
-
     const tbody = document.createElement('tbody');
     let day = 1;
     for (let i = 0; i < 6; i++) {
@@ -90,7 +77,10 @@ function createCalendar(year, month) {
                 tr.appendChild(td);
             } else if (day <= daysInMonth) {
                 const td = document.createElement('td');
-                td.textContent = day;
+                const dateButton = document.createElement('button');
+                dateButton.textContent = day;
+                dateButton.setAttribute('data-date', `${year}-${month + 1}-${day}`);
+                td.appendChild(dateButton);
                 tr.appendChild(td);
                 day++;
             }
@@ -101,10 +91,26 @@ function createCalendar(year, month) {
     table.appendChild(tbody);
     calendar.innerHTML = '';
     calendar.appendChild(table);
+
+    const dateButtons = Array.from(document.querySelectorAll('button[data-date]'));
+    dateButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const date = button.getAttribute('data-date');
+            if (date) {
+                selectedDate = date;
+                displayMemo(selectedDate);
+            }
+        });
+    });
+}
+
+function displayMemo(date) {
+    selectedDateElement.textContent = `Memo for ${date}`;
+    memoText.textContent = memos[date] || '';
+    memoContainer.style.display = 'block';
 }
 
 const today = new Date();
 currentYear = today.getFullYear();
 currentMonth = today.getMonth();
 createCalendar(currentYear, currentMonth);
-

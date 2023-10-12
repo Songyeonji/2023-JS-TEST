@@ -8,14 +8,23 @@
 </head>
 <body>
     <h1>월별 달력</h1>
-    
-    <div id="calendar"></div>
-    <button id="prevMonth">이전 달</button>
-    <button id="nextMonth">다음 달</button>
-    <div id="memo">
-        <h2>메모</h2>
-        <textarea id="memoText"></textarea>
-        <button id="saveMemo">저장</button>
+    <div id="calendar">
+        <div id="calendarTitle" class="calendar-title">
+            <button id="prevMonth">Previous Month</button>
+            <span id="currentMonthYear"></span>
+            <button id="nextMonth">Next Month</button>
+        </div>
+        <div class="memo-container" id="memo">
+            <div>
+                <span id="selectedDate" class="selected-date"></span>
+            </div>
+            <div>
+                <textarea id="memoText" class="memo-text" rows="4"></textarea>
+            </div>
+            <div>
+                <button id="saveMemo" class="save-memo-button">Save Memo</button>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
