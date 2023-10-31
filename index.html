@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>달력</title>
+    <title>간단한 계산기</title>
 </head>
 <body>
-    <h1>월별 달력</h1>
-    <div id="calendar">
-        <div id="calendarTitle" class="calendar-title">
-            <button id="prevMonth">Previous Month</button>
-            <span id="currentMonthYear"></span>
-            <button id="nextMonth">Next Month</button>
-        </div>
-        <div class="memo-container" id="memo">
-            <div>
-                <span id="selectedDate" class="selected-date"></span>
-            </div>
-            <div>
-                <textarea id="memoText" class="memo-text" rows="4"></textarea>
-            </div>
-            <div>
-                <button id="saveMemo" class="save-memo-button">Save Memo</button>
-            </div>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="number" value="7">7</button>
+            <button class="number" value="8">8</button>
+            <button class="number" value="9">9</button>
+            <button class="operator" value="/">/</button>
+            <button class="number" value="4">4</button>
+            <button class="number" value="5">5</button>
+            <button class="number" value="6">6</button>
+            <button class="operator" value="*">*</button>
+            <button class="number" value="1">1</button>
+            <button class="number" value="2">2</button>
+            <button class="number" value="3">3</button>
+            <button class="operator" value="-">-</button>
+            <button class="number" value="0">0</button>
+            <button class="operator" value=".">.</button>
+            <button class="equal" value="=">=</button>
+            <button class="clear" value="C">C</button>
+            <button class="operator" value="sqrt">√</button>
+            <button class="operator" value="^">^</button>
         </div>
     </div>
     <script src="script.js"></script>

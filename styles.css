@@ -1,100 +1,54 @@
 body {
-    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
     text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#display {
+    width: 100%;
+    font-size: 24px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.number {
     background-color: #f0f0f0;
 }
 
-h1 {
-    color: #333;
+.operator {
+    background-color: #f9a825;
 }
 
-#calendar {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-table {
-    width: 100%;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-
-th {
-    background-color: #333;
+.equal {
+    background-color: #1fc140;
     color: #fff;
 }
 
-#memo {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none;
-}
-
-#memo h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-#memo textarea {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#memo button {
-    background-color: #4CAF50;
+.clear {
+    background-color: #e94e77;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-#memo button:hover {
-    background-color: #45a049;
-}
-
-
-
-/* 선택된 버튼 스타일 */
-button.selected {
-    background-color: #ff6347;
-}
-
-.memo-container {
-    display: none;
-    margin-top: 20px;
-}
-
-.memo-body {
-    padding: 10px;
-}
-
-.memo-date {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.memo-text {
-    border: 1px solid #ccc;
-    padding: 10px;
-    min-height: 100px;
 }
